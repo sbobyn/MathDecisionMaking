@@ -20,7 +20,13 @@ filterNotch = 60;
 computeICAActivations = 1;
 
 % epoch markers
-markers = {'S 11','S 12','S 13','S 14'};
+% 5: oddball
+% 6: oddball control
+% 11: Win when got correct 
+% 12: Win when got incorrect
+% 13: Loss when got incorrect 
+% 14: Loss when got correct
+markers = {'S 5', 'S 6', 'S 11','S 12','S 13','S 14'};
 epochWindow = [-200 800];
 
 % baseline correction
