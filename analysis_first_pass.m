@@ -24,7 +24,7 @@ computeICAActivations = 1;
 % 6: oddball control
 % 11: Win when got correct 
 % 12: Win when got incorrect
-% 13: Loss when got incorrect 
+% 13: Loss when got incorrect
 % 14: Loss when got correct
 markers = {'S 5', 'S 6', 'S 11','S 12','S 13','S 14'};
 epochWindow = [-200 800];
@@ -46,16 +46,13 @@ files = dir(fullfile(dirName,'*.vhdr'));
 for k = 1:length(files)
     % file name
     baseFileName = files(k).name;
-    % absolute path to file
-    fullFileName = fullfile(dirName, baseFileName); 
+    % load data
+    EEG = doLoadBVData(dirName,baseFileName);
     
     %% analysis on kth file
     
-    % load data
-    EEG = doLoadBVData(pathName,fullFileName);
-    
     % rereference
-    EEG = doRereference(EEG,referenceChannels,referenceTo,channelLocations);
+    EEG = doRereference(EEG,referenceChannels,referenceTo,EEG.chanlocs);
     
     % filter
     EEG = doFilter(EEG,filterLow,filterHigh,filterOrder,filterNotch,EEG.srate);
